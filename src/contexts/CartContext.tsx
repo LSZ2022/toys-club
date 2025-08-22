@@ -59,7 +59,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         );
       } else {
         // 如果不存在，添加新商品
-        showToast(`${product.name} 已添加到购物车`, 'success');
+        showToast(`${product.name} Added to cart`, 'success');
         return [...prevItems, { product, quantity }];
       }
     });
@@ -69,7 +69,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const removeItem = (productId: string) => {
     const itemToRemove = items.find(item => item.product.id === productId);
     if (itemToRemove) {
-      showToast(`${itemToRemove.product.name} 已从购物车移除`, 'info');
+      showToast(`${itemToRemove.product.name} Remove to cart`, 'info');
     }
     
     setItems(prevItems => prevItems.filter(item => item.product.id !== productId));

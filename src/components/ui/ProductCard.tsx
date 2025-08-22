@@ -27,7 +27,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   // 快速预览（可扩展为弹窗或新页面）
   const handleQuickView = () => {
-    console.log('预览商品:', product);
+    console.log('Preview Product:', product);
     // 这里可以扩展为：打开模态框展示商品详情
   };
 

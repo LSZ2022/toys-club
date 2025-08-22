@@ -129,7 +129,7 @@ const Checkout: React.FC = () => {
     }
   };
 
-  // 渲染地址表单
+  // 渲染地址表单（补全被截断的代码）
   const renderAddressForm = () => (
     <div className="space-y-6">
       <h3 className="text-xl font-bold">Shipping Address</h3>
@@ -326,8 +326,63 @@ const Checkout: React.FC = () => {
           </div>
         </div>
       )}
+    </div>
+  );
 
-      <div className="mt-4">
+  // 渲染配送方式表单
+  const renderShippingForm = () => (
+    <div className="space-y-6">
+      <h3 className="text-xl font-bold">Shipping Method</h3>
+      <div className="space-y-4">
+        <div className="border rounded-md p-4 hover:border-primary transition-colors cursor-pointer">
+          <div className="flex items-center">
+            <input
+              type="radio"
+              id="standard"
+              name="shipping"
+              defaultChecked
+              className="h-4 w-4 text-primary focus:ring-primary border-gray-300"
+            />
+            <label htmlFor="standard" className="ml-2 block">
+              <span className="font-medium">Standard Shipping</span>
+              <span className="text-gray-600 ml-2">5-7 business days</span>
+              <span className="font-medium ml-2">$4.99</span>
+            </label>
+          </div>
+        </div>
+        <div className="border rounded-md p-4 hover:border-primary transition-colors cursor-pointer">
+          <div className="flex items-center">
+            <input
+              type="radio"
+              id="express"
+              name="shipping"
+              className="h-4 w-4 text-primary focus:ring-primary border-gray-300"
+            />
+            <label htmlFor="express" className="ml-2 block">
+              <span className="font-medium">Express Shipping</span>
+              <span className="text-gray-600 ml-2">2-3 business days</span>
+              <span className="font-medium ml-2">$12.99</span>
+            </label>
+          </div>
+        </div>
+        <div className="border rounded-md p-4 hover:border-primary transition-colors cursor-pointer">
+          <div className="flex items-center">
+            <input
+              type="radio"
+              id="overnight"
+              name="shipping"
+              className="h-4 w-4 text-primary focus:ring-primary border-gray-300"
+            />
+            <label htmlFor="overnight" className="ml-2 block">
+              <span className="font-medium">Overnight Shipping</span>
+              <span className="text-gray-600 ml-2">Next business day</span>
+              <span className="font-medium ml-2">$24.99</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-6">
         <label htmlFor="order-notes" className="block text-sm font-medium text-gray-700 mb-1">
           Order Notes (Optional)
         </label>
@@ -340,112 +395,6 @@ const Checkout: React.FC = () => {
           placeholder="Special instructions for delivery"
         ></textarea>
       </div>
-
-      <div className="mt-8 flex justify-end">
-        <button
-          type="button"
-          onClick={handleNext}
-          className="btn-primary"
-        >
-          Continue to Shipping
-          <i className="fa fa-arrow-right ml-2"></i>
-        </button>
-      </div>
-    </div>
-  );
-
-  // 渲染配送方式表单
-  const renderShippingForm = () => (
-    <div className="space-y-6">
-      <h3 className="text-xl font-bold">Shipping Method</h3>
-      
-      <div className="space-y-3">
-        <div className="border rounded-lg p-4 hover:border-primary transition-colors cursor-pointer">
-          <div className="flex items-start">
-            <input
-              type="radio"
-              id="standard"
-              name="shipping"
-              defaultChecked
-              className="mt-1 h-4 w-4 text-primary focus:ring-primary border-gray-300"
-            />
-            <div className="ml-3">
-              <label htmlFor="standard" className="block text-sm font-medium text-gray-900">
-                Standard Shipping
-              </label>
-              <p className="mt-1 text-sm text-gray-600">
-                Delivery in 5-7 business days
-              </p>
-              <p className="mt-1 text-sm font-medium text-primary">
-                $10.00
-              </p>
-            </div>
-          </div>
-        </div>
-        
-        <div className="border rounded-lg p-4 hover:border-primary transition-colors cursor-pointer">
-          <div className="flex items-start">
-            <input
-              type="radio"
-              id="express"
-              name="shipping"
-              className="mt-1 h-4 w-4 text-primary focus:ring-primary border-gray-300"
-            />
-            <div className="ml-3">
-              <label htmlFor="express" className="block text-sm font-medium text-gray-900">
-                Express Shipping
-              </label>
-              <p className="mt-1 text-sm text-gray-600">
-                Delivery in 2-3 business days
-              </p>
-              <p className="mt-1 text-sm font-medium text-primary">
-                $20.00
-              </p>
-            </div>
-          </div>
-        </div>
-        
-        <div className="border rounded-lg p-4 hover:border-primary transition-colors cursor-pointer">
-          <div className="flex items-start">
-            <input
-              type="radio"
-              id="overnight"
-              name="shipping"
-              className="mt-1 h-4 w-4 text-primary focus:ring-primary border-gray-300"
-            />
-            <div className="ml-3">
-              <label htmlFor="overnight" className="block text-sm font-medium text-gray-900">
-                Overnight Shipping
-              </label>
-              <p className="mt-1 text-sm text-gray-600">
-                Delivery in 1 business day
-              </p>
-              <p className="mt-1 text-sm font-medium text-primary">
-                $35.00
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="mt-8 flex justify-between">
-        <button
-          type="button"
-          onClick={handleBack}
-          className="btn-secondary"
-        >
-          <i className="fa fa-arrow-left mr-2"></i>
-          Back to Information
-        </button>
-        <button
-          type="button"
-          onClick={handleNext}
-          className="btn-primary"
-        >
-          Continue to Payment
-          <i className="fa fa-arrow-right ml-2"></i>
-        </button>
-      </div>
     </div>
   );
 
@@ -453,131 +402,115 @@ const Checkout: React.FC = () => {
   const renderPaymentForm = () => (
     <div className="space-y-6">
       <h3 className="text-xl font-bold">Payment Method</h3>
-      
-      <div className="space-y-3">
-        <div 
-          className={`border rounded-lg p-4 cursor-pointer transition-colors ${
-            paymentMethod === 'credit' ? 'border-primary bg-primary/5' : 'hover:border-primary'
-          }`}
-          onClick={() => setPaymentMethod('credit')}
-        >
-          <div className="flex items-start">
+      <div className="space-y-4">
+        <div className={`border rounded-md p-4 ${paymentMethod === 'credit' ? 'border-primary bg-primary/5' : 'hover:border-primary'} transition-colors cursor-pointer`}
+          onClick={() => setPaymentMethod('credit')}>
+          <div className="flex items-center">
             <input
               type="radio"
               id="credit"
               name="payment"
               checked={paymentMethod === 'credit'}
               onChange={() => setPaymentMethod('credit')}
-              className="mt-1 h-4 w-4 text-primary focus:ring-primary border-gray-300"
+              className="h-4 w-4 text-primary focus:ring-primary border-gray-300"
             />
-            <div className="ml-3">
-              <label htmlFor="credit" className="block text-sm font-medium text-gray-900">
-                Credit / Debit Card
-              </label>
-              <div className="mt-3 grid grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="card-name" className="block text-xs font-medium text-gray-700 mb-1">
-                    Name on Card
-                  </label>
-                  <input
-                    type="text"
-                    id="card-name"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm"
-                    placeholder="May Fung"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="card-number" className="block text-xs font-medium text-gray-700 mb-1">
-                    Card Number
-                  </label>
-                  <input
-                    type="text"
-                    id="card-number"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm"
-                    placeholder="1234 5678 9012 3456"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="expiry" className="block text-xs font-medium text-gray-700 mb-1">
-                    Expiry Date
-                  </label>
-                  <input
-                    type="text"
-                    id="expiry"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm"
-                    placeholder="MM/YY"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="cvc" className="block text-xs font-medium text-gray-700 mb-1">
-                    CVC
-                  </label>
-                  <input
-                    type="text"
-                    id="cvc"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm"
-                    placeholder="123"
-                  />
-                </div>
+            <label htmlFor="credit" className="ml-2 block font-medium">
+              Credit / Debit Card
+            </label>
+          </div>
+          {paymentMethod === 'credit' && (
+            <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="md:col-span-2">
+                <label htmlFor="card-number" className="block text-sm font-medium text-gray-700 mb-1">
+                  Card Number
+                </label>
+                <input
+                  type="text"
+                  id="card-number"
+                  placeholder="1234 5678 9012 3456"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="expiry" className="block text-sm font-medium text-gray-700 mb-1">
+                  Expiry Date
+                </label>
+                <input
+                  type="text"
+                  id="expiry"
+                  placeholder="MM/YY"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="cvv" className="block text-sm font-medium text-gray-700 mb-1">
+                  CVV
+                </label>
+                <input
+                  type="text"
+                  id="cvv"
+                  placeholder="123"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
+                  required
+                />
               </div>
             </div>
-          </div>
+          )}
         </div>
-        
-        <div 
-          className={`border rounded-lg p-4 cursor-pointer transition-colors ${
-            paymentMethod === 'paypal' ? 'border-primary bg-primary/5' : 'hover:border-primary'
-          }`}
-          onClick={() => setPaymentMethod('paypal')}
-        >
-          <div className="flex items-start">
+
+        <div className={`border rounded-md p-4 ${paymentMethod === 'paypal' ? 'border-primary bg-primary/5' : 'hover:border-primary'} transition-colors cursor-pointer`}
+          onClick={() => setPaymentMethod('paypal')}>
+          <div className="flex items-center">
             <input
               type="radio"
               id="paypal"
               name="payment"
               checked={paymentMethod === 'paypal'}
               onChange={() => setPaymentMethod('paypal')}
-              className="mt-1 h-4 w-4 text-primary focus:ring-primary border-gray-300"
+              className="h-4 w-4 text-primary focus:ring-primary border-gray-300"
             />
-            <div className="ml-3">
-              <label htmlFor="paypal" className="block text-sm font-medium text-gray-900">
-                PayPal
-              </label>
-              <p className="mt-1 text-sm text-gray-600">
-                Pay with your PayPal account
-              </p>
-            </div>
+            <label htmlFor="paypal" className="ml-2 block font-medium">
+              PayPal
+            </label>
           </div>
         </div>
-        
-        <div 
-          className={`border rounded-lg p-4 cursor-pointer transition-colors ${
-            paymentMethod === 'apple' ? 'border-primary bg-primary/5' : 'hover:border-primary'
-          }`}
-          onClick={() => setPaymentMethod('apple')}
-        >
-          <div className="flex items-start">
+        <div className={`border rounded-md p-4 ${paymentMethod === 'applepay' ? 'border-primary bg-primary/5' : 'hover:border-primary'} transition-colors cursor-pointer`}
+          onClick={() => setPaymentMethod('applepay')}>
+          <div className="flex items-center">
             <input
               type="radio"
-              id="apple"
+              id="applepay"
               name="payment"
-              checked={paymentMethod === 'apple'}
-              onChange={() => setPaymentMethod('apple')}
-              className="mt-1 h-4 w-4 text-primary focus:ring-primary border-gray-300"
+              checked={paymentMethod === 'applepay'}
+              onChange={() => setPaymentMethod('applepay')}
+              className="h-4 w-4 text-primary focus:ring-primary border-gray-300"
             />
-            <div className="ml-3">
-              <label htmlFor="apple" className="block text-sm font-medium text-gray-900">
-                Apple Pay
-              </label>
-              <p className="mt-1 text-sm text-gray-600">
-                Pay with Apple Pay
-              </p>
-            </div>
+            <label htmlFor="applepay" className="ml-2 block font-medium">
+              Apple Pay
+            </label>
+          </div>
+        </div>
+        <div className={`border rounded-md p-4 ${paymentMethod === 'googlepay' ? 'border-primary bg-primary/5' : 'hover:border-primary'} transition-colors cursor-pointer`}
+          onClick={() => setPaymentMethod('googlepay')}>
+          <div className="flex items-center">
+            <input
+              type="radio"
+              id="googlepay"
+              name="payment"
+              checked={paymentMethod === 'googlepay'}
+              onChange={() => setPaymentMethod('googlepay')}
+              className="h-4 w-4 text-primary focus:ring-primary border-gray-300"
+            />
+            <label htmlFor="googlepay" className="ml-2 block font-medium">
+              Google Pay
+            </label>
           </div>
         </div>
       </div>
-
-      <div className="mt-4">
+      
+      <div className="mt-6">
         <div className="flex items-center">
           <input
             type="checkbox"
@@ -591,42 +524,63 @@ const Checkout: React.FC = () => {
           </label>
         </div>
       </div>
-
-      <div className="mt-8 flex justify-between">
-        <button
-          type="button"
-          onClick={handleBack}
-          className="btn-secondary"
-        >
-          <i className="fa fa-arrow-left mr-2"></i>
-          Back to Shipping
-        </button>
-        <button
-          type="button"
-          onClick={handlePlaceOrder}
-          disabled={loading}
-          className="btn-primary disabled:opacity-70"
-        >
-          {loading ? (
-            <span className="flex items-center">
-              <i className="fa fa-spinner fa-spin mr-2"></i> Processing...
-            </span>
-          ) : (
-            <span className="flex items-center">
-              Place Order
-              <i className="fa fa-check ml-2"></i>
-            </span>
-          )}
-        </button>
-      </div>
     </div>
   );
 
+  // 渲染步骤内容
+  const renderStepContent = () => {
+    switch (step) {
+      case 1:
+        return renderAddressForm();
+      case 2:
+        return renderShippingForm();
+      case 3:
+        return renderPaymentForm();
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="bg-white rounded-lg shadow-sm p-6">
-      {step === 1 && renderAddressForm()}
-      {step === 2 && renderShippingForm()}
-      {step === 3 && renderPaymentForm()}
+      {renderStepContent()}
+
+      <div className="mt-8 flex justify-between">
+        {step > 1 ? (
+          <button
+            onClick={handleBack}
+            className="px-6 py-2 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+          >
+            Back
+          </button>
+        ) : (
+          <div></div> // 步骤1不显示Back按钮
+        )}
+
+        {step < 3 ? (
+          <button
+            onClick={handleNext}
+            className="px-6 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors"
+          >
+            Continue
+          </button>
+        ) : (
+          <button
+            onClick={handlePlaceOrder}
+            disabled={loading}
+            className="px-6 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors disabled:opacity-70"
+          >
+            {loading ? (
+              <div className="flex items-center">
+                <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-white mr-2"></div>
+                Processing...
+              </div>
+            ) : (
+              'Place Order'
+            )}
+          </button>
+        )}
+      </div>
     </div>
   );
 };

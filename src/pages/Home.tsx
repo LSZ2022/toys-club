@@ -236,9 +236,6 @@ const Home = ({ openQuickView }: HomeProps) => {
             </div>
           </div>
         </div>
-        <div className="absolute right-0 top-0 bottom-0 w-1/2 hidden lg:block opacity-20">
-          <img src="https://picsum.photos/id/1058/800/800" alt="Children playing with toys" className="h-full w-full object-cover" />
-        </div>
       </section>
 
       {/* 分类快捷入口 */}

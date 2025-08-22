@@ -1,16 +1,21 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useCart } from '@/contexts/CartContext';
+// 新增：导入用户上下文（假设存在UserContext用于管理登录用户信息）
+import { useAuth } from '@/contexts/AuthContext';
 
 const OrderConfirmation: React.FC = () => {
   const { orderId } = useParams<{ orderId: string }>();
   const { clearCart } = useCart();
+  // 新增：通过用户上下文获取当前登录用户信息
+  const { user } = useAuth();
 
-  // 模拟订单确认数据
+  // 修复：使用用户上下文的email替换硬编码值，未获取到时保留默认值
   const orderData = {
     id: orderId || 'ORD-123456',
     date: new Date().toLocaleDateString(),
-    email: 'customer@example.com',
+    // 改动点：从登录用户信息中获取email，兼容未登录情况
+    email: user?.email || 'customer@example.com',
     items: 3,
     total: 98.17,
     estimatedDelivery: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toLocaleDateString()

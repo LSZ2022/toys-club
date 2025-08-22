@@ -1,36 +1,18 @@
+// src/types/Product.ts
 export interface Product {
-  [x: string]: any;
-  id: string;
+  id: number;
   name: string;
-  description: string;
   brand: string;
   category: string;
-  subcategory?: string;
-  price: {
-    [x: string]: any;
-    msrp: number;
-    current: number;
-    discountstring?: string;
-    discount?: number;
-  };
-  images: string[];
-  attributes: {
-    age: string;
-    material?: string;
-    features: string[];
-    dimensions?: string;
-    weight?: string;
-  };
-  stock: number;
-  ratings: {
-    average: number;
-    count: number;
-  };
+  ageRange: string;
+  imageUrl: string; // 保留兼容旧属性
+  images: string[]; // 新增图片数组
+  originalPrice: number;
+  price: number;
   isNew?: boolean;
-  isFeatured?: boolean;
-  createdAt: string;
-  sku: string;
-  inStock: boolean;
+  isOnSale?: boolean;
+  description: string;
+  features: string[];
 }
 
 export interface ProductReview {

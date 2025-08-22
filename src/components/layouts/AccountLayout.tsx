@@ -70,15 +70,6 @@ const AccountLayout: React.FC = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    to="/account/addresses" 
-                    className="block px-4 py-2 rounded-md hover:bg-light transition-colors"
-                  >
-                    <i className="fa fa-map-marker mr-2 text-gray-500"></i>
-                    Addresses
-                  </Link>
-                </li>
-                <li>
                   <button
                     onClick={() => {
                       // 这里应该调用logout函数

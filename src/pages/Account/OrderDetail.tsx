@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
-// 模拟订单详情数据
+// 模拟订单详情数据（实际项目中会删除，此处保留用于对比）
 const mockOrderDetails = {
   id: 'ORD-78945',
   date: '2023-06-15',
@@ -49,6 +49,14 @@ const mockOrderDetails = {
   trackingNumber: 'TRK123456789'
 };
 
+// 骨架屏组件：用于模拟加载中的内容占位
+const Skeleton = ({ height, width, radius = '0.375rem' }: { height: string; width: string; radius?: string }) => (
+  <div 
+    className="bg-gray-100 animate-pulse" 
+    style={{ height, width, borderRadius: radius }}
+  ></div>
+);
+
 const OrderDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [order, setOrder] = useState<any>(null);
@@ -57,9 +65,8 @@ const OrderDetail: React.FC = () => {
   // 模拟API请求
   useEffect(() => {
     const fetchOrderDetails = async () => {
-      // 模拟网络延迟
-      await new Promise(resolve => setTimeout(resolve, 800));
-      // 在实际应用中，这里会根据id从API获取真实订单数据
+      // 模拟网络延迟（实际项目中会调用真实API）
+      await new Promise(resolve => setTimeout(resolve, 1200));
       setOrder(mockOrderDetails);
       setLoading(false);
     };
@@ -85,13 +92,107 @@ const OrderDetail: React.FC = () => {
     }
   };
 
+  // 优化后的加载状态：结合精致动画和骨架屏
   if (loading) {
     return (
-      <div className="text-center py-12">
-        <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
-          <span className="visually-hidden">Loading...</span>
+      <div className="container mx-auto px-4 py-8">
+        {/* 顶部标题区域骨架 */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
+          <div>
+            <Skeleton height="2rem" width="200px" />
+            <Skeleton height="1rem" width="120px" className="mt-2" />
+          </div>
+          <Skeleton height="2rem" width="100px" className="mt-4 sm:mt-0" />
         </div>
-        <p className="mt-4 text-gray-600">Loading your order details...</p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          <div className="md:col-span-2 space-y-8">
+            {/* 订单商品区域骨架 */}
+            <div>
+              <Skeleton height="1.5rem" width="150px" />
+              <div className="border rounded-lg overflow-hidden mt-4">
+                {/* 模拟2个商品的骨架 */}
+                {[1, 2].map((item) => (
+                  <div key={item} className="flex items-center p-4 border-b last:border-0">
+                    <Skeleton height="4rem" width="4rem" radius="0.5rem" />
+                    <div className="flex-1 ml-4 space-y-2">
+                      <Skeleton height="1rem" width="60%" />
+                      <Skeleton height="0.875rem" width="30%" />
+                    </div>
+                    <Skeleton height="1rem" width="40px" />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 配送地址骨架 */}
+            <div>
+              <Skeleton height="1.5rem" width="150px" />
+              <div className="bg-light p-4 rounded-lg mt-4 space-y-2">
+                <Skeleton height="1rem" width="40%" />
+                <Skeleton height="1rem" width="60%" />
+                <Skeleton height="1rem" width="80%" />
+                <Skeleton height="1rem" width="50%" />
+              </div>
+            </div>
+
+            {/* 账单地址骨架（复用配送地址结构） */}
+            <div>
+              <Skeleton height="1.5rem" width="150px" />
+              <div className="bg-light p-4 rounded-lg mt-4 space-y-2">
+                <Skeleton height="1rem" width="40%" />
+                <Skeleton height="1rem" width="60%" />
+                <Skeleton height="1rem" width="80%" />
+                <Skeleton height="1rem" width="50%" />
+              </div>
+            </div>
+
+            {/* 支付方式骨架 */}
+            <div>
+              <Skeleton height="1.5rem" width="150px" />
+              <div className="bg-light p-4 rounded-lg mt-4">
+                <Skeleton height="1rem" width="70%" />
+              </div>
+            </div>
+          </div>
+
+          {/* 订单摘要骨架 */}
+          <div>
+            <Skeleton height="1.5rem" width="150px" />
+            <div className="bg-light p-4 rounded-lg mt-4">
+              <div className="space-y-3 mb-6">
+                <div className="flex justify-between">
+                  <Skeleton height="1rem" width="30%" />
+                  <Skeleton height="1rem" width="20%" />
+                </div>
+                <div className="flex justify-between">
+                  <Skeleton height="1rem" width="30%" />
+                  <Skeleton height="1rem" width="20%" />
+                </div>
+                <div className="flex justify-between">
+                  <Skeleton height="1rem" width="30%" />
+                  <Skeleton height="1rem" width="20%" />
+                </div>
+              </div>
+              
+              <div className="flex justify-between pt-4 border-t border-gray-200 mb-6">
+                <Skeleton height="1.25rem" width="25%" />
+                <Skeleton height="1.25rem" width="20%" />
+              </div>
+              
+              <div className="mb-6 space-y-2">
+                <Skeleton height="1rem" width="40%" />
+                <Skeleton height="1rem" width="60%" />
+                <Skeleton height="1rem" width="30%" className="mt-3" />
+              </div>
+              
+              <div className="space-y-3">
+                <Skeleton height="2.5rem" width="100%" radius="0.375rem" />
+                <Skeleton height="2.5rem" width="100%" radius="0.375rem" />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
@@ -108,6 +209,7 @@ const OrderDetail: React.FC = () => {
     );
   }
 
+  // 原有渲染逻辑（保持不变）
   return (
     <div>
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
